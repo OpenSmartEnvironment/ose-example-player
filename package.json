@@ -1,0 +1,47 @@
+{
+  "name": "ose-example-player",
+  "preferGlobal": true,
+  "version": "0.1.7",
+  "author": "Jan Snasel <snaselj@gmail.com>",
+  "description": "Open Smart Environment media player example",
+  "contributors": [
+    {
+      "name": "Jan Snasel",
+      "email": "snaselj@gmail.com"
+    },
+    {
+      "name": "Fred Rooks",
+      "email": "fred@fredrooks.com"
+    }
+  ],
+  "main": "./bin/run.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opensmartenvironment/ose-example-player.git"
+  },
+  "keywords": [
+    "open smart environment",
+    "home automation",
+    "media player",
+    "raspberry pi"
+  ],
+  "dependencies": {
+    "ose": "*",
+    "ose-gaia": "*",
+    "ose-control": "*",
+    "ose-dvb": "*",
+    "ose-fs": "*",
+    "ose-icecast": "*",
+    "ose-lirc": "*",
+    "ose-media": "*",
+    "ose-pa": "*",
+    "ose-rpi": "*",
+    "ose-videolan": "*",
+    "ose-xorg": "*",
+    "ose-youtube": "*"
+  },
+  "license": "GPL-3.0+",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
