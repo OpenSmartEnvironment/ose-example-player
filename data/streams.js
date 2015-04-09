@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @submodule bundle.media
+ * @module example-player
  */
 
 /**
@@ -12,7 +12,7 @@
  *
  * Each property of `exports` contains data of one media stream entry.
  *
- * @class bundle.examples.media.streams
+ * @class example-player.data.streams
  * @type module
  */
 

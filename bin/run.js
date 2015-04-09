@@ -4,29 +4,19 @@
  * @caption Media player example
  *
  * @readme
- * This example is an stand-alone application based on the OSE
- * framework, showcasing some of its principles and capabilities. This
- * application works as a currently half-featured media player and
- * remote control on Linux boxes. The example application has the
- * following features:
+
+ * This example is an Node.js application based on the OSE framework
+ * showcasing some of its principles and capabilities. It provides a
+ * media player with the following features:
  *
- * - Node.js backend
- * - Control via HTML5 frontend instances
+ * - Playback of predefined streams, local files, items in history
  * - Near-realtime synchronization among all front- and backend
  *   instances
- * - Playback of different media using VLC
- * - Predefined media streams
- * - Local files playback
- * - Playback from history
- *
- * See our other example applications:
- * - [ose-example-dvb]
- * - [ose-example-lirc]
- * - [ose-example-rpi]
- *
- * These three examples provide example OSE instances that connect to
- * the instance provided by this example instance.
- *
+ * - Playback through VLC
+ * - Volume control using PulseAudio
+ * - Integration with other example applications: ([DVB
+ *   streamer](#example-dvb), [LIRC](#example-lirc), [Raspberry
+ *   Pi](#example-rpi))
  *
  * @planned
  * - Keyboard and pointer remote control using xdotool
@@ -48,7 +38,7 @@
  *
  * If you run Debian Jessie, just run:
  *
- *     sudo apt-get install pulseaudio python3 vlc libdbus-1-dev vlc
+ *     sudo apt-get install libdbus-1-dev pulseaudio python3 vlc
  *
  *
  * To enable the dbus control interface, do:
@@ -72,8 +62,6 @@
  *
  *     export DISPLAY=":0.0"
  *
- * To start the application from the install directory:
- *
  *     cd ose-example-player
  *     ./bin/run.js
  *
@@ -84,9 +72,18 @@
  *     http://localhost:4431
  *
  *
- * @module bundle
- * @submodule bundle.media
- * @main bundle.media
+ * @module example-player
+ * @main example-player
+ */
+
+/**
+ * @caption Media player example startup script
+ *
+ * @readme
+ * Main example application file
+ *
+ * @class example-player.bin.run
+ * @type module
  */
 
 
@@ -109,7 +106,7 @@ var McastPool;  // Optional multicast pool
 
 // Basic properties of OSE instance
 exports.ose = {
-  name: 'media',         // Name of this OSE instance
+  name: 'player',         // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
 };
 
@@ -142,7 +139,7 @@ exports['ose-videolan'] = {};
 //exports['ose-youtube'] = {};
 
 // Enable X.Org control package
-exports['ose-xorg'] = {};
+//exports['ose-xorg'] = {};
 
 // Enable Raspberry Pi package
 exports['ose-rpi'] = {};
@@ -188,6 +185,7 @@ exports['ose-gaia'] = {
         alias: 'media',
       }
     },
+    /*
     {
       caption: 'X.Org remote control',
       pagelet: 'gesture',
@@ -196,6 +194,7 @@ exports['ose-gaia'] = {
         alias: 'mediaControl',
       }
     },
+    */
     {
       caption: 'Raspberry Pi',
       pagelet: 'detail',
@@ -305,7 +304,7 @@ function initControl(shard) {
   });
 
   // Create X.Org server control entry
-  shard.entry('xorg', 'xorg', {name: 'X.Org server'});
+//  shard.entry('xorg', 'xorg', {name: 'X.Org server'});
 }
 
 // "media" shard initialization method.
