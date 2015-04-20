@@ -33,18 +33,11 @@
  * For the Media player application to work, you need the following prerequisities:
  * - Node.js and npm
  * - PulseAudio configured with the D-Bus control interface
- * - Python 3
  * - VLC
  *
- * If you run Debian Jessie, just run:
- *
- *     sudo apt-get install libdbus-1-dev pulseaudio python3 vlc
- *
- *
- * To enable the dbus control interface, do:
+ * To enable the PulseAudio dbus control interface, do:
  *
  *     pactl load-module module-dbus-protocol
- *
  *
  * To install the example application, do one of the following:
  *
@@ -155,7 +148,14 @@ exports.cli = {
     'shard media',
     'entry player',
     'info',
+
   /*
+    'command volume 0.01',
+    'sleep 100',
+    'command volume 0.02',
+    'command fullscreen false',
+    'wait 1000',
+    'command fullscreen true',
     'command mute true',
     'wait 1000',
     'command mute false',
@@ -212,7 +212,7 @@ exports['ose-gaia'] = {
 exports.space = {
   id: 'ose/lib/space',        // Module id
   name: 'example.org',        // Name of the space
-  home: 'media',              // Home instance of the space – This
+  home: 'player',             // Home instance of the space – This
                               // instance is the home instance of the
                               // space.
 };
