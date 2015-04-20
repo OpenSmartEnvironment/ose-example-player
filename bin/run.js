@@ -40,12 +40,8 @@
  *
  *     pactl load-module module-dbus-protocol
  *
- * To install the example application, do one of the following:
+ * To install the example application, do the following:
  *
- *     npm install ose-example-player
- *
- * or
- *    
  *     git clone https://github.com/OpenSmartEnvironment/ose-example-player
  *     cd ose-example-player
  *     npm install
@@ -64,10 +60,8 @@
  *     ? Answer: 3
  *
  *
- * To start the Media player example application, change to the installation
- * directory and execute the startup script from an X.Org session.
+ * To start the Media player example application, execute the startup script from an X.Org session.
  *
- *     cd ose-example-player
  *     ./bin/run.js
  *
  *
@@ -122,9 +116,6 @@ exports['ose-control'] = {};
 
 // Enable general dvb package
 exports['ose-dvb'] = {};
-
-// Enable LIRC package
-//exports['ose-lirc'] = {};
 
 // Enable general media player package
 exports['ose-media'] = {};
