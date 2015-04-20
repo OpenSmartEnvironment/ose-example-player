@@ -5,10 +5,10 @@
  *
  * @readme
 
- * This example is an Node.js application based on the OSE framework
- * showcasing some of its principles and capabilities. It provides a
- * media player with the following features:
+ * This example is an Node.js media player application based on the
+ * OSE framework showcasing some of its principles and capabilities.
  *
+ * @features
  * - Playback of predefined streams, local files, items in history
  * - Near-realtime synchronization among all front- and backend
  *   instances
