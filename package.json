@@ -31,14 +31,10 @@
     "ose-control": "*",
     "ose-dvb": "*",
     "ose-fs": "*",
-    "ose-icecast": "*",
-    "ose-lirc": "*",
     "ose-media": "*",
     "ose-pa": "*",
     "ose-rpi": "*",
     "ose-videolan": "*",
-    "ose-xorg": "*",
-    "ose-youtube": "*"
   },
   "license": "GPL-3.0+",
   "engines": {
