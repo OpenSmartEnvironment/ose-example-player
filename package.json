@@ -25,15 +25,15 @@
     "raspberry pi"
   ],
   "dependencies": {
-    "ose": "*",
-    "ose-control": "*",
-    "ose-dvb": "*",
-    "ose-fs": "*",
-    "ose-gaia": "*",
-    "ose-media": "*",
-    "ose-pa": "*",
-    "ose-rpi": "*",
-    "ose-videolan": "*"
+    "ose": "git+https://github.com/OpenSmartEnvironment/ose.git",
+    "ose-control": "git+https://github.com/OpenSmartEnvironment/ose-control.git",
+    "ose-dvb": "git+https://github.com/OpenSmartEnvironment/ose-dvb.git",
+    "ose-fs": "git+https://github.com/OpenSmartEnvironment/ose-fs.git",
+    "ose-gaia": "git+https://github.com/OpenSmartEnvironment/ose-gaia.git",
+    "ose-media": "git+https://github.com/OpenSmartEnvironment/ose-media.git",
+    "ose-pa": "git+https://github.com/OpenSmartEnvironment/ose-pa.git",
+    "ose-rpi": "git+https://github.com/OpenSmartEnvironment/ose-rpi.git",
+    "ose-videolan": "git+https://github.com/OpenSmartEnvironment/ose-videolan.git"
   },
   "license": "GPL-3.0+",
   "engines": {
