@@ -27,14 +27,14 @@
   ],
   "dependencies": {
     "ose": "*",
-    "ose-gaia": "*",
     "ose-control": "*",
     "ose-dvb": "*",
     "ose-fs": "*",
+    "ose-gaia": "*",
     "ose-media": "*",
     "ose-pa": "*",
     "ose-rpi": "*",
-    "ose-videolan": "*",
+    "ose-videolan": "*"
   },
   "license": "GPL-3.0+",
   "engines": {

@@ -44,7 +44,7 @@
  *
  *     git clone https://github.com/OpenSmartEnvironment/ose-example-player
  *     cd ose-example-player
- *     npm install
+ *     ./bin/install.sh
  *
  *
  * When asked for gaia-component version answer "3":
