@@ -3,10 +3,11 @@
 /**
  * @caption Media player example
  *
+ *
  * @readme
-
  * This example is an Node.js media player application based on the
  * OSE framework showcasing some of its principles and capabilities.
+ *
  *
  * @features
  * - Playback of predefined streams, local files, items in history
@@ -18,15 +19,12 @@
  *   streamer](#example-dvb), [LIRC](#example-lirc), [Raspberry
  *   Pi](#example-rpi))
  *
+ *
  * @planned
  * - Keyboard and pointer remote control using xdotool
  * - Icecast directory search and playback
  * - Youtube search and playback
  *
- *
- * @oseExample
- *
- * @description
  *
  * @usage
  * ## Usage
