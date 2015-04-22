@@ -45,19 +45,6 @@
  *     npm install
  *
  *
- * When asked for gaia-component version answer "3":
- *
- *     Unable to find a suitable version for gaia-component, please choose one:
- *        1) gaia-component#~0.2.0 which resolved to 0.2.1 and is required by gaia-slider#796330f304, gaia-value-selector#8870b647c7
- *        2) gaia-component#~0.3.0 which resolved to 0.3.5 and is required by gaia-button#0.0.4, gaia-checkbox#0.0.3, gaia-header#0.7.1, gaia-list#0.1.7, gaia-loading#84a8803886, gaia-pages#0.1.0, gaia-progress#02c312574a, gaia-sub-header#0.2.2, gaia-switch#4c28f022ca
- *        3) gaia-component#~0.3.4 which resolved to 0.3.5 and is required by ose-gaia
- *        4) gaia-component#~0.3.3 which resolved to 0.3.5 and is required by gaia-text-input#0.1.1
- *
- *     Prefix the choice with ! to persist it to bower.json
- *
- *     ? Answer: 3
- *
- *
  * To start the Media player example application, execute the startup script from an X.Org session.
  *
  *     ./bin/run.js
