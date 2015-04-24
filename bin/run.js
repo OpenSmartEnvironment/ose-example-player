@@ -93,6 +93,13 @@ var McastPool;  // Optional multicast pool
 exports.ose = {
   name: 'player',         // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
+
+  /* To enable HTTPs generate server certificate into 'ose-example/player/private' and uncomment the following lines:
+  ssl: {
+    key: 'private/server.key',
+    cert: 'private/server.crt',
+  },
+  */
 };
 
 
