@@ -51,8 +51,9 @@
  *
  *
  * To access the [HTML5 frontend], open the following URL in Firefox
- * 37 or newer with the `dom.webcomponents.enabled` option enabled in
- * `about:config`:
+ * 37 or newer. (Iceweasel in Debian Jessie is too old.)
+ *
+ * <b>Enable the `dom.webcomponents.enabled` option in `about:config`:</b>
  *
  *     http://localhost:4431
  *
