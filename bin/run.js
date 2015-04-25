@@ -32,7 +32,7 @@
  * For the Media player application to work, you need the following prerequisities:
  * - Node.js and npm
  * - PulseAudio configured with the D-Bus control interface
- * - VLC
+ * - VLC 2.2 or newer
  *
  * To enable the PulseAudio dbus control interface, do:
  *
