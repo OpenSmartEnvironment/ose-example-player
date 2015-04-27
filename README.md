@@ -58,13 +58,13 @@ OSE has the following prerequisites:
 ## Usage
 
 For the Media player application to work, you need the following prerequisities:
-- Node.js and npm
-- PulseAudio configured with the D-Bus control interface
-- VLC 2.2 or newer
-
-To enable the PulseAudio dbus control interface, do:
-
-    pactl load-module module-dbus-protocol
+- Node.js > 0.10, npm, git
+- bower<br>
+  `sudo npm install -g bower`
+- PulseAudio configured with the D-Bus control interface<br>
+  `pactl load-module module-dbus-protocol`
+- VLC 2.2 or newer<br>
+  `sudo apt-get install vlc`
 
 To install the example application, do the following:
 
@@ -72,16 +72,13 @@ To install the example application, do the following:
     cd ose-example-player
     npm install
 
-
 To start the Media player example application, execute the startup script from an X.Org session.
 
     ./bin/run.js
 
-
 To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in Firefox
-37 or newer. (Iceweasel in Debian Jessie is too old.)
-
-<b>Enable the `dom.webcomponents.enabled` option in `about:config`:</b>
+**37 or newer** (Iceweasel in Debian Jessie is too old).<br>
+**Before openning the link, enable the `dom.webcomponents.enabled` option in `about:config`.**
 
     http://localhost:4431
 
