@@ -57,7 +57,7 @@ OSE has the following prerequisites:
 
 ## Usage
 
-For the Media player application to work, you need the following prerequisities:
+For the Media player application to work, you need the following prerequisites:
 - Node.js > 0.10, npm, git
 - bower<br>
   `sudo npm install -g bower`
@@ -78,7 +78,7 @@ To start the Media player example application, execute the startup script from a
 
 To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in Firefox
 **37 or newer** (Iceweasel in Debian Jessie is too old).<br>
-**Before openning the link, enable the `dom.webcomponents.enabled` option in `about:config`.**
+**Before opening the link, enable the `dom.webcomponents.enabled` option in `about:config`.**
 
     http://localhost:4431
 
