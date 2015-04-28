@@ -33,7 +33,8 @@
     "ose-media": "git+https://github.com/OpenSmartEnvironment/ose-media.git",
     "ose-pa": "git+https://github.com/OpenSmartEnvironment/ose-pa.git",
     "ose-rpi": "git+https://github.com/OpenSmartEnvironment/ose-rpi.git",
-    "ose-videolan": "git+https://github.com/OpenSmartEnvironment/ose-videolan.git"
+    "ose-videolan": "git+https://github.com/OpenSmartEnvironment/ose-videolan.git",
+    "ose-xorg": "git+https://github.com/OpenSmartEnvironment/ose-xorg.git"
   },
   "license": "GPL-3.0+",
   "engines": {
