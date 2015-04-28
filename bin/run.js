@@ -126,7 +126,7 @@ exports['ose-videolan'] = {};
 //exports['ose-youtube'] = {};
 
 // Enable X.Org control package
-//exports['ose-xorg'] = {};
+exports['ose-xorg'] = {};
 
 // Enable Raspberry Pi package
 exports['ose-rpi'] = {};
@@ -179,7 +179,6 @@ exports['ose-gaia'] = {
         alias: 'media',
       }
     },
-    /*
     {
       caption: 'X.Org remote control',
       pagelet: 'gesture',
@@ -188,7 +187,6 @@ exports['ose-gaia'] = {
         alias: 'mediaControl',
       }
     },
-    */
     {
       caption: 'Raspberry Pi',
       pagelet: 'detail',
@@ -298,7 +296,7 @@ function initControl(shard) {
   });
 
   // Create X.Org server control entry
-//  shard.entry('xorg', 'xorg', {name: 'X.Org server'});
+  shard.entry('xorg', 'xorg', {name: 'X.Org server'});
 }
 
 // "media" shard initialization method.
