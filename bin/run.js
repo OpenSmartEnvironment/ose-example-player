@@ -13,15 +13,15 @@
  * - Playback of predefined streams, local files, items in history
  * - Near-realtime synchronization among all front- and backend
  *   instances
- * - Playback through VLC
- * - Volume control using PulseAudio
+ * - Playback through [VLC]
+ * - Volume control using [PulseAudio]
+ * - Remote control of keyboard and pointer through xdotool ([xorg])
  * - Integration with other example applications: ([DVB
  *   streamer](#example-dvb), [LIRC](#example-lirc), [Raspberry
  *   Pi](#example-rpi))
  *
  *
  * @planned
- * - Keyboard and pointer remote control using xdotool
  * - Icecast directory search and playback
  * - Youtube search and playback
  *
@@ -55,6 +55,7 @@
  *     http://localhost:4431
  *
  *
+ * @scope media
  * @module example-player
  * @main example-player
  */

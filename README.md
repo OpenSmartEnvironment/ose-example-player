@@ -6,8 +6,9 @@ OSE framework showcasing some of its principles and capabilities.
 - Playback of predefined streams, local files, items in history
 - Near-realtime synchronization among all front- and backend
   instances
-- Playback through VLC
-- Volume control using PulseAudio
+- Playback through [VLC](http://opensmartenvironment.github.io/doc/#vlc)
+- Volume control using [PulseAudio](http://opensmartenvironment.github.io/doc/#pulseaudio)
+- Remote control of keyboard and pointer through xdotool ([xorg](http://opensmartenvironment.github.io/doc/#xorg))
 - Integration with other example applications: ([DVB
   streamer](http://opensmartenvironment.github.io/doc/#example-dvb), [LIRC](http://opensmartenvironment.github.io/doc/#example-lirc), [Raspberry
   Pi](http://opensmartenvironment.github.io/doc/#example-rpi))
