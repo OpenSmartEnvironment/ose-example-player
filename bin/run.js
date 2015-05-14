@@ -238,7 +238,7 @@ exports.mediaFs = {
   scope: 'fs',               // Scope the shard belongs to
   alias: 'mediaFs',          // Shard alias
   db: {                      // Database containing shards data
-    class: 'ose-fs/lib/db',  // Database class
+    id: 'ose-fs/lib/db',     // Database class
     root: '/opt/media',      // Directory containing media files
   }
 };
