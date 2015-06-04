@@ -356,13 +356,13 @@ function initMedia(shard) {
   shard.afterHome(function() {
     addMedia('stream', require('../data/streams'));
 
-    Fs.readFile(Path.dirname(Path.dirname(module.filename)) + '/data/channels.conf', {encoding: 'utf8'}, function(err, data) {
+    Fs.readFile(Path.dirname(Path.dirname(module.filename)) + '/data/channels.conf', {encoding: 'utf8'}, function(err, val) {
       if (err) {
         O.log.error(err);
         return;
       }
 
-      require('ose-dvb').parseChannels(shard, data, McastPool, function(err) {
+      require('ose-dvb').parseChannels(shard, val, McastPool, function(err) {
         if (err) {
           O.log.error(err);
         } else {
@@ -374,10 +374,10 @@ function initMedia(shard) {
   });
 
 
-  function addMedia(name, data) {
-    for (var key in data) {
+  function addMedia(name, val) {
+    for (var key in val) {
       // Create new media item entry
-      shard.entry(key, name, data[key]);
+      shard.entry(key, name, val[key]);
     }
   }
 
