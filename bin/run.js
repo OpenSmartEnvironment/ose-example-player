@@ -174,7 +174,7 @@ exports['ose-gaia'] = {
   dashboard: [
     {
       caption: 'Media player',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'player',
         alias: 'media',
@@ -182,7 +182,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'X.Org remote control',
-      pagelet: 'gesture',
+      view: 'gesture',
       ident: {
         id: 'xorg',
         alias: 'mediaControl',
@@ -190,7 +190,7 @@ exports['ose-gaia'] = {
     },
     {
       caption: 'Raspberry Pi',
-      pagelet: 'detail',
+      view: 'detail',
       ident: {
         id: 'rpi',
         alias: 'rpi',
@@ -324,7 +324,7 @@ function initMedia(shard) {
         alias: 'mediaControl',
       },
 
-      // List of sources, each source is identification for "list" pagelet or full pagelet "stateObj"
+      // List of sources, each source is identification for "list" view or full view "stateObj"
       sources: {
         history: {
           kind: 'item',
