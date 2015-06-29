@@ -44,6 +44,22 @@
  *     cd ose-example-player
  *     npm install
  *
+ * To configure this example, edit `./bin/run.js`. For example, below
+ * you can set the path to your media directory:
+ *
+ *     // Access to local filesystem
+ *     exports.mediaFs = {
+ *       id: 'ose/lib/shard',
+ *       sid: 4,                    // Shard id unique within the space
+ *       scope: 'fs',               // Scope the shard belongs to
+ *       alias: 'mediaFs',          // Shard alias
+ *       db: {                      // Database containing shards data
+ *         id: 'ose-fs/lib/db',     // Database class
+ *         // Set directory containing media files:
+ *         root: Path.dirname(Path.dirname(module.filename)) + '/media',
+ *       }
+ *     };
+ *
  * To start the Media player example application, execute the startup script from an X.Org session.
  *
  *     ./bin/run.js
@@ -239,7 +255,8 @@ exports.mediaFs = {
   alias: 'mediaFs',          // Shard alias
   db: {                      // Database containing shards data
     id: 'ose-fs/lib/db',     // Database class
-    root: '/opt/media',      // Directory containing media files
+    // Set directory containing media files:
+    root: Path.dirname(Path.dirname(module.filename)) + '/media',
   }
 };
 
