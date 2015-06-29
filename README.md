@@ -85,7 +85,7 @@ you can set the path to your media directory:
       db: {                      // Database containing shards data
         id: 'ose-fs/lib/db',     // Database class
         // Set directory containing media files:
-        root: Path.dirname(Path.dirname(module.filename)) + '/media',     
+        root: Path.dirname(Path.dirname(module.filename)) + '/media',
       }
     };
 
