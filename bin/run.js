@@ -192,24 +192,24 @@ exports['ose-gaia'] = {
       caption: 'Media player',
       view: 'detail',
       ident: {
-        id: 'player',
-        alias: 'media',
+        entry: 'player',
+        shard: 'media',
       }
     },
     {
       caption: 'X.Org remote control',
       view: 'gesture',
       ident: {
-        id: 'xorg',
-        alias: 'mediaControl',
+        entry: 'xorg',
+        shard: 'mediaControl',
       }
     },
     {
       caption: 'Raspberry Pi',
       view: 'detail',
       ident: {
-        id: 'rpi',
-        alias: 'rpi',
+        entry: 'rpi',
+        shard: 'rpi',
       }
     },
   ],
@@ -270,7 +270,7 @@ exports.xiph = {
   shards: [{
     sid: 1,
     scope: 'icecast',
-    alias: 'icecast'
+    sal: 'icecast'
   }]
 };
 
@@ -283,7 +283,7 @@ exports.google = {
   shards: [{
     sid: 1,
     scope: 'youtube',
-    alias: 'youtube'
+    sal: 'youtube'
   }]
 };
 
@@ -331,40 +331,40 @@ function initMedia(shard) {
 
       // Identification of playback entry
       playback: {
-        id: 'playback',
-        alias: 'mediaControl',
+        entry: 'playback',
+        shard: 'mediaControl',
       },
 
       // Identification of volume control entry
       volume: {
-        id: 'volume',
-        alias: 'mediaControl',
+        entry: 'volume',
+        shard: 'mediaControl',
       },
 
       // List of sources, each source is identification for "list" view or full view "stateObj"
       sources: {
         history: {
           kind: 'item',
-          alias: 'media',
+          shard: 'media',
         },
         stream: {
           kind: 'stream',
-          alias: 'media',
+          shard: 'media',
         },
         fs: {
           scope: 'fs',
-          alias: 'mediaFs',
+          shard: 'mediaFs',
         },
         dvb: {
           kind: 'dvbChannel',
-          alias: 'media',
+          shard: 'media',
         }
       },
 
       // Identification of DVB streamer entry
       dvb: {
-        id: 'dvbstreamer',
-        alias: 'dvb',
+        entry: 'dvbstreamer',
+        shard: 'dvb',
       },
     }
   );
