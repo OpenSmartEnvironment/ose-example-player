@@ -108,6 +108,7 @@ var McastPool;  // Optional multicast pool
 exports.ose = {
   name: 'player',         // Name of this OSE instance
   space: 'example.org',  // Space name this instance belongs to
+  spid: 1,
 
   /* To enable HTTPs generate server certificate into 'ose-example/player/private' and uncomment the following lines:
   ssl: {
@@ -235,6 +236,7 @@ exports.mediaControl = {
   alias: 'mediaControl', // Shard alias
   entries: initControl,  // Method initializing entries belonging
                          // to the shard, defined below
+  schema: 'ose/lib/shard/level',
 };
 
 // Media shard
@@ -245,6 +247,7 @@ exports.media = {
   alias: 'media',      // Shard alias
   entries: initMedia,  // Method initializing entries belonging
                        // to the shard, defined below
+  schema: 'ose/lib/shard/level',
 };
 
 // Access to local filesystem
@@ -291,12 +294,17 @@ exports.google = {
 
 // "control" shard initialization method.
 function initControl(shard) {
+  var trans = shard.startTrans();
 
   // Create volume control entry
-  shard.entry('volume', 'paDbus', {name: 'PulseAudio'});
+  trans.add('paDbus', {
+    alias: 'volume',
+    name: 'PulseAudio'
+  });
 
   // Create playback control entry
-  shard.entry('playback', 'vlc', {
+  trans.add('vlc', {
+    alias: 'playback',
     name: 'VLC',
     mcast: 'mcastPool',  // Pool used for multicast streaming
 
@@ -307,26 +315,33 @@ function initControl(shard) {
     },
   });
 
-  McastPool = shard.entry('mcastPool', 'ippool', {
+  McastPool = trans.add('ippool', {
+    alias: 'mcastPool',
     name: 'Multicast address pool',
     start: '239.255.0.1',
     end: '239.255.255.254',
   });
 
   // Create X.Org server control entry
-  shard.entry('xorg', 'xorg', {name: 'X.Org server'});
+  trans.add('xorg', {
+    alias: 'xorg',
+    name: 'X.Org server'
+  });
+
+  return trans.commit(O.log.bindError());
 }
 
 // "media" shard initialization method.
 function initMedia(shard) {
+  var trans = shard.startTrans();
 
   // Create entry representing generic Media player
-  shard.entry(
-    'player',  // Entry id
+  trans.add(
     'player',  // Entry kind
 
     // Entry data
     {
+      alias: 'player',       // Entry alias
       name: 'Media Player',  // Displayed name
 
       // Identification of playback entry
@@ -371,33 +386,25 @@ function initMedia(shard) {
 
   // Run following method after plugins initialization.
   shard.afterHome(function() {
-    addMedia('stream', require('../data/streams'));
+    require('ose-media').addStreams(trans, require('../data/streams'));
 
     Fs.readFile(Path.dirname(Path.dirname(module.filename)) + '/data/channels.conf', {encoding: 'utf8'}, function(err, val) {
       if (err) {
         O.log.error(err);
-        return;
+        return trans.commit(O.log.bindError());
       }
 
-      require('ose-dvb').parseChannels(shard, val, McastPool, function(err) {
+      return require('ose-dvb').parseChannels(trans, val, McastPool, function(err) {
         if (err) {
           O.log.error(err);
         } else {
           O.log.notice('Channels file successfully parsed');
         }
+
+        return trans.commit(O.log.bindError());
       });
-      return;
     });
   });
-
-
-  function addMedia(name, val) {
-    for (var key in val) {
-      // Create new media item entry
-      shard.entry(key, name, val[key]);
-    }
-  }
-
 }
 
 // Start OSE instance
