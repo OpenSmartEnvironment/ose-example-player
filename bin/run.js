@@ -155,7 +155,7 @@ exports.cli = {
 
   // CLI can run some commands:
   script: [
-    'wait 1000',
+    'wait 2000',
     'space example.org',
     'shard media',
     'entry player',
