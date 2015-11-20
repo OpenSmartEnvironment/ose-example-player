@@ -236,7 +236,6 @@ exports.mediaControl = {
   alias: 'mediaControl', // Shard alias
   entries: initControl,  // Method initializing entries belonging
                          // to the shard, defined below
-  schema: 'ose/lib/shard/level',
 };
 
 // Media shard
@@ -247,7 +246,6 @@ exports.media = {
   alias: 'media',      // Shard alias
   entries: initMedia,  // Method initializing entries belonging
                        // to the shard, defined below
-  schema: 'ose/lib/shard/level',
 };
 
 // Access to local filesystem
