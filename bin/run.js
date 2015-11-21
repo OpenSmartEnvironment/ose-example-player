@@ -90,7 +90,9 @@
 'use strict';
 
 // The OSE framework is initialized by requiring the "ose" package:
-var O = require('ose').app(module, 'example');
+var O = require('ose').module(module);
+O.package = 'ose-example-player';
+O.scope = 'media';
 
 var Fs = require('fs');
 var Path = require('path');
