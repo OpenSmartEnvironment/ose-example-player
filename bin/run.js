@@ -248,6 +248,7 @@ exports.media = {
   alias: 'media',      // Shard alias
   entries: initMedia,  // Method initializing entries belonging
                        // to the shard, defined below
+  schema: 'memdown',
 };
 
 // Access to local filesystem
@@ -256,10 +257,10 @@ exports.mediaFs = {
   sid: 4,                    // Shard id unique within the space
   scope: 'fs',               // Scope the shard belongs to
   alias: 'mediaFs',          // Shard alias
-  db: {                      // Database containing shards data
-    id: 'ose-fs/lib/db',     // Database class
+  schema: {                  // Database containing shards data
     // Set directory containing media files:
-    root: Path.dirname(Path.dirname(module.filename)) + '/media',
+//    root: Path.dirname(Path.dirname(module.filename)) + '/media',
+    root: '/opt/media',
   }
 };
 
@@ -359,20 +360,32 @@ function initMedia(shard) {
       // List of sources, each source is identification for "list" view or full view "stateObj"
       sources: {
         history: {
-          kind: 'item',
-          shard: 'media',
+          ident: {
+            shard: 'media',
+            kind: 'item',
+            map: 'item-score',
+          },
         },
         stream: {
-          kind: 'stream',
-          shard: 'media',
+          ident: {
+            shard: 'media',
+            kind: 'stream',
+            map: 'stream-name',
+          },
         },
         fs: {
-          scope: 'fs',
-          shard: 'mediaFs',
+          ident: {
+            shard: 'mediaFs',
+            map: 'all',
+          }
         },
         dvb: {
-          kind: 'dvbChannel',
-          shard: 'media',
+          ident: {
+            shard: 'media',
+          },
+          filter: {
+            kind: 'dvbChannel',
+          },
         }
       },
 
