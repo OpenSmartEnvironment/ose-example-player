@@ -127,6 +127,9 @@ exports['ose-control'] = {};
 // Enable general dvb package
 exports['ose-dvb'] = {};
 
+// Enable LevelDB package
+exports['ose-level'] = {};
+
 // Enable general media player package
 exports['ose-media'] = {};
 
@@ -382,9 +385,7 @@ function initMedia(shard) {
         dvb: {
           ident: {
             shard: 'media',
-          },
-          filter: {
-            kind: 'dvbChannel',
+            map: 'dvbChannel-title',
           },
         }
       },
