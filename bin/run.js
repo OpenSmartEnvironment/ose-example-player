@@ -51,7 +51,7 @@
  *     exports.mediaFs = {
  *       id: 'ose/lib/shard',
  *       sid: 4,                    // Shard id unique within the space
- *       scope: 'fs',               // Scope the shard belongs to
+ *       schema: 'fs',              // Schema the shard belongs to
  *       alias: 'mediaFs',          // Shard alias
  *       db: {                      // Database containing shards data
  *         id: 'ose-fs/lib/db',     // Database class
@@ -71,7 +71,6 @@
  *     http://localhost:4431
  *
  *
- * @scope media
  * @module example-player
  * @main example-player
  */
@@ -92,7 +91,6 @@
 // The OSE framework is initialized by requiring the "ose" package:
 var O = require('ose').module(module);
 O.package = 'ose-example-player';
-O.scope = 'media';
 
 var Fs = require('fs');
 var Path = require('path');
@@ -149,10 +147,10 @@ exports['ose-videolan'] = {};
 //exports['ose-youtube'] = {};
 
 // Enable X.Org control package
-exports['ose-xorg'] = {};
+//exports['ose-xorg'] = {};
 
 // Enable Raspberry Pi package
-exports['ose-rpi'] = {};
+//exports['ose-rpi'] = {};
 
 // Enable CLI interface
 exports.cli = {
@@ -237,7 +235,7 @@ exports.space = {
 exports.mediaControl = {
   id: 'ose/lib/shard',
   sid: 2,                // Shard id unique within the space
-  scope: 'control',      // Scope the shard belongs to
+  schema: 'control',     // Schema the shard belongs to
   alias: 'mediaControl', // Shard alias
   entries: initControl,  // Method initializing entries belonging
                          // to the shard, defined below
@@ -247,24 +245,22 @@ exports.mediaControl = {
 exports.media = {
   id: 'ose/lib/shard',
   sid: 3,              // Shard id unique within the space
-  scope: 'media',      // Scope the shard belongs to
+  schema: 'media',     // Schema the shard belongs to
   alias: 'media',      // Shard alias
   entries: initMedia,  // Method initializing entries belonging
                        // to the shard, defined below
-  schema: 'memdown',
+  leveldb: 'memdown',
 };
 
 // Access to local filesystem
 exports.mediaFs = {
   id: 'ose/lib/shard',
   sid: 4,                    // Shard id unique within the space
-  scope: 'fs',               // Scope the shard belongs to
+  schema: 'fs',              // Schema the shard belongs to
   alias: 'mediaFs',          // Shard alias
-  schema: {                  // Database containing shards data
     // Set directory containing media files:
-//    root: Path.dirname(Path.dirname(module.filename)) + '/media',
-    root: '/opt/media',
-  }
+//  root: Path.dirname(Path.dirname(module.filename)) + '/media',
+  root: '/opt/media',
 };
 
   /*
@@ -276,7 +272,7 @@ exports.xiph = {
   home: 'media.example.org',
   shards: [{
     sid: 1,
-    scope: 'icecast',
+    schema: 'icecast',
     sal: 'icecast'
   }]
 };
@@ -289,7 +285,7 @@ exports.google = {
   home: 'media.example.org',
   shards: [{
     sid: 1,
-    scope: 'youtube',
+    schema: 'youtube',
     sal: 'youtube'
   }]
 };
@@ -326,11 +322,13 @@ function initControl(shard) {
     end: '239.255.255.254',
   });
 
+  /*
   // Create X.Org server control entry
   trans.add('xorg', {
     alias: 'xorg',
     name: 'X.Org server'
   });
+  */
 
   return trans.commit(O.log.bindError());
 }
