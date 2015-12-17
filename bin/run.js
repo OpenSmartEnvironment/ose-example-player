@@ -188,7 +188,7 @@ exports.http = {
 
 
 // Enable HTML5 frontend
-exports['ose-gaia'] = {
+exports['ose-html5'] = {
 
   // Define dashboard content
   dashboard: [
@@ -358,7 +358,7 @@ function initMedia(shard) {
         shard: 'mediaControl',
       },
 
-      // List of sources, each source is identification for "list" view or full view "stateObj"
+      // List of sources, each source is identification for "list" view or full view "so"
       sources: {
         history: {
           ident: {
@@ -383,6 +383,7 @@ function initMedia(shard) {
         dvb: {
           ident: {
             shard: 'media',
+            kind: 'dvbChannel',
             map: 'dvbChannel-title',
           },
         }

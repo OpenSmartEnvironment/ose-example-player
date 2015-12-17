@@ -29,7 +29,7 @@
     "ose-control": "git+https://github.com/OpenSmartEnvironment/ose-control.git",
     "ose-dvb": "git+https://github.com/OpenSmartEnvironment/ose-dvb.git",
     "ose-fs": "git+https://github.com/OpenSmartEnvironment/ose-fs.git",
-    "ose-gaia": "git+https://github.com/OpenSmartEnvironment/ose-gaia.git",
+    "ose-html5": "git+https://github.com/OpenSmartEnvironment/ose-html5.git",
     "ose-media": "git+https://github.com/OpenSmartEnvironment/ose-media.git",
     "ose-pa": "git+https://github.com/OpenSmartEnvironment/ose-pa.git",
     "ose-rpi": "git+https://github.com/OpenSmartEnvironment/ose-rpi.git",
