@@ -160,6 +160,12 @@ exports.cli = {
     'shard media',
     'entry player',
     'info',
+    /*
+    'wait 10000',
+    'shard dvb',
+    'entry dvbstreamer',
+    'info',
+    'detail',
 
   /*
     'command volume 0.01',
@@ -303,11 +309,11 @@ function initControl(shard) {
   trans.add('vlc', {
     alias: 'playback',
     name: 'VLC',
-    mcast: 'mcastPool',  // Pool used for multicast streaming
+//    mcast: 'mcastPool',  // Pool used for multicast streaming
 
     // IP used as input for unicast streams
     ucast: {
-      ip: '10.166.25.8',
+      ip: '10.166.25.14',
       port: '5000',
     },
   });
@@ -355,41 +361,42 @@ function initMedia(shard) {
         shard: 'mediaControl',
       },
 
-      // List of sources, each source is identification for "list" view or full view "so"
-      sources: {
-        history: {
-          ident: {
-            shard: 'media',
-            kind: 'item',
-            map: 'item-score',
-          },
-        },
-        stream: {
-          ident: {
-            shard: 'media',
-            kind: 'stream',
-            map: 'stream-name',
-          },
-        },
-        fs: {
-          ident: {
-            shard: 'mediaFs',
-            map: 'all',
-          }
-        },
-        dvb: {
-          ident: {
-            shard: 'media',
-            kind: 'dvbChannel',
-            map: 'dvbChannel-title',
-          },
-        }
-      },
-
       // Identification of DVB streamer entry
       dvb: {
         entry: 'dvbstreamer',
         shard: 'dvb',
+      },
+
+      // List of sources, each source is identification for "list" view or full view "so"
+      sources: {
+        history: {
+          query: 'item-score',
+          ident: {
+            shard: 'media',
+            kind: 'item',
+          },
+        },
+        stream: {
+          query: 'stream-name',
+          ident: {
+            shard: 'media',
+            kind: 'stream',
+          },
+        },
+        fs: {
+          query: 'all',
+          ident: {
+            shard: 'mediaFs',
+            kind: 'inode',
+          }
+        },
+        dvb: {
+          query: 'dvbChannel-title',
+          ident: {
+            shard: 'media',
+            kind: 'dvbChannel',
+          },
+        },
       },
     }
   );
