@@ -291,7 +291,7 @@ exports.google = {
 
 // "control" shard initialization method.
 function initControl(shard) {
-  var trans = shard.startTrans();
+  var trans = shard.transaction();
 
   // Create volume control entry
   trans.add('paDbus', {
@@ -332,7 +332,7 @@ function initControl(shard) {
 
 // "media" shard initialization method.
 function initMedia(shard) {
-  var trans = shard.startTrans();
+  var trans = shard.transaction();
 
   // Create entry representing generic Media player
   trans.add(
