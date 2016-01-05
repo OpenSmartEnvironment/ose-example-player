@@ -144,10 +144,10 @@ exports['ose-videolan'] = {};
 //exports['ose-youtube'] = {};
 
 // Enable X.Org control package
-//exports['ose-xorg'] = {};
+exports['ose-xorg'] = {};
 
 // Enable Raspberry Pi package
-//exports['ose-rpi'] = {};
+exports['ose-rpi'] = {};
 
 // Enable CLI interface
 exports.cli = {
@@ -325,13 +325,11 @@ function initControl(shard) {
     end: '239.255.255.254',
   });
 
-  /*
   // Create X.Org server control entry
   trans.add('xorg', {
     alias: 'xorg',
     name: 'X.Org server'
   });
-  */
 
   return trans.commit(O.log.bindError());
 }
