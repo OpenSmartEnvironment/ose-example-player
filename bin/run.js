@@ -107,7 +107,7 @@ var McastPool;  // Optional multicast pool
 // Basic properties of OSE instance
 exports.ose = {
   name: 'player',         // Name of this OSE instance
-  space: 'example.org',  // Space name this instance belongs to
+  space: 'example.org',   // Space name this instance belongs to
   spid: 1,
 
   /* To enable HTTPs generate server certificate into 'ose-example/player/private' and uncomment the following lines:
@@ -237,22 +237,24 @@ exports.space = {
 // The space is partitioned into shards:
 exports.mediaControl = {
   id: 'ose/lib/shard',
-  sid: 2,                // Shard id unique within the space
-  schema: 'control',     // Schema the shard belongs to
-  alias: 'mediaControl', // Shard alias
-  entries: initControl,  // Method initializing entries belonging
-                         // to the shard, defined below
+  sid: 2,                 // Shard id unique within the space
+  schema: 'control',      // Schema the shard belongs to
+  alias: 'mediaControl',  // Shard alias
+  upgrades: [
+    initControl,  // Method initializing entries belonging to the shard, defined below
+  ],
 };
 
 // Media shard
 exports.media = {
   id: 'ose/lib/shard',
-  sid: 3,              // Shard id unique within the space
-  schema: 'media',     // Schema the shard belongs to
-  alias: 'media',      // Shard alias
-  entries: initMedia,  // Method initializing entries belonging
-                       // to the shard, defined below
-  leveldb: 'memdown',
+  sid: 3,               // Shard id unique within the space
+  schema: 'media',      // Schema the shard belongs to
+  alias: 'media',       // Shard alias
+  leveldb: 'memdown',   // Type of level down
+  upgrades: [
+    initMedia,  // Method initializing entries belonging to the shard, defined below
+  ],
 };
 
 // Access to local filesystem
@@ -296,17 +298,15 @@ exports.google = {
 */
 
 // "control" shard initialization method.
-function initControl(shard) {
-  var trans = shard.transaction();
-
+function initControl(transaction, cb) {
   // Create volume control entry
-  trans.add('paDbus', {
+  transaction.add('paDbus', {
     alias: 'volume',
     name: 'PulseAudio'
   });
 
   // Create playback control entry
-  trans.add('vlc', {
+  transaction.add('vlc', {
     alias: 'playback',
     name: 'VLC',
 //    mcast: 'mcastPool',  // Pool used for multicast streaming
@@ -318,7 +318,7 @@ function initControl(shard) {
     },
   });
 
-  McastPool = trans.add('ippool', {
+  McastPool = transaction.add('ippool', {
     alias: 'mcastPool',
     name: 'Multicast address pool',
     start: '239.255.0.1',
@@ -326,20 +326,18 @@ function initControl(shard) {
   });
 
   // Create X.Org server control entry
-  trans.add('xorg', {
+  transaction.add('xorg', {
     alias: 'xorg',
     name: 'X.Org server'
   });
 
-  return trans.commit(O.log.bindError());
+  return cb();
 }
 
 // "media" shard initialization method.
-function initMedia(shard) {
-  var trans = shard.transaction();
-
+function initMedia(transaction, cb) {
   // Create entry representing generic Media player
-  trans.add(
+  transaction.add(
     'player',  // Entry kind
 
     // Entry data
@@ -399,26 +397,12 @@ function initMedia(shard) {
     }
   );
 
-  // Run following method after plugins initialization.
-  shard.afterHome(function() {
-    require('ose-media').addStreams(trans, require('../data/streams'));
+  require('ose-media').addStreams(transaction, require('../data/streams'));
 
-    Fs.readFile(Path.dirname(Path.dirname(module.filename)) + '/data/channels.conf', {encoding: 'utf8'}, function(err, val) {
-      if (err) {
-        O.log.error(err);
-        return trans.commit(O.log.bindError());
-      }
+  Fs.readFile(Path.dirname(Path.dirname(module.filename)) + '/data/channels.conf', {encoding: 'utf8'}, function(err, val) {
+    if (err) return cb(err);
 
-      return require('ose-dvb').parseChannels(trans, val, McastPool, function(err) {
-        if (err) {
-          O.log.error(err);
-        } else {
-          O.log.notice('Channels file successfully parsed');
-        }
-
-        return trans.commit(O.log.bindError());
-      });
-    });
+    return require('ose-dvb').parseChannels(transaction, val, McastPool, cb);
   });
 }
 
