@@ -89,8 +89,9 @@
 'use strict';
 
 // The OSE framework is initialized by requiring the "ose" package:
-var O = require('ose').module(module);
-O.package = 'ose-example-player';
+const O = require('ose')(module)
+  .setPackage('ose-example-player')
+;
 
 var Fs = require('fs');
 var Path = require('path');
