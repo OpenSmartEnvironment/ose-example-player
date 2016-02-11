@@ -30,7 +30,7 @@
  * ## Usage
  *
  * For the Media player application to work, you need the following prerequisites:
- * - Node.js > 0.10, npm, git
+ * - Node.js > 0.12, npm, git
  * - bower<br>
  *   `sudo npm install -g bower`
  * - PulseAudio configured with the D-Bus control interface<br>
