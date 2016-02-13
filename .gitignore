@@ -5,3 +5,4 @@
 *.swp
 node_modules
 private
+data/example.org
