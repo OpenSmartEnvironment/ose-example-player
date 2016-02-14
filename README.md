@@ -3,15 +3,17 @@ This example is an Node.js media player application based on the
 OSE framework showcasing some of its principles and capabilities.
 
 ## Features
-- Playback of predefined streams, local files, items in history
-- Near-realtime synchronization among all front- and backend
-  instances
-- Playback through [VLC](http://opensmartenvironment.github.io/doc/#vlc)
+- Playback through [VLC](http://opensmartenvironment.github.io/doc/#vlc) of:
+  - predefined streams
+  - local files
+  - items in history
+  - Icecast directory
 - Volume control using [PulseAudio](http://opensmartenvironment.github.io/doc/#pulseaudio)
 - Remote control of keyboard and pointer through xdotool ([xorg](http://opensmartenvironment.github.io/doc/#xorg))
-- Integration with other example applications: ([DVB
-  streamer](http://opensmartenvironment.github.io/doc/#example-dvb), [LIRC](http://opensmartenvironment.github.io/doc/#example-lirc), [Raspberry
-  Pi](http://opensmartenvironment.github.io/doc/#example-rpi))
+- Integration with other example applications:
+  - [DVB streamer](http://opensmartenvironment.github.io/doc/#example-dvb)
+  - [LIRC](http://opensmartenvironment.github.io/doc/#example-lirc)
+  - [Raspberry Pi](http://opensmartenvironment.github.io/doc/#example-rpi)
 
 ## Important links
 This package is a part of the OSE suite. For more information, see the following links:
@@ -45,57 +47,47 @@ For more information about OSE see **[the documentation](http://opensmartenviron
 - Pre-alpha stage (insecure and buggy)
 - Unstable API
 - Patchy documentation
-- No test suite
+- Low test coverage (1 %)
 
 This is not yet a piece of download-and-use software. It is important
 to understand the basic principles covered by the
 [documentation](http://opensmartenvironment.github.io/doc/).
 
+However, this software is successfully and continuously used since end
+of 2013 in one installation running 7 OSE instances spread over several
+Raspberries, HTPC and notebook.
+
 ## Platforms
 OSE has the following prerequisites:
-- Node.js (>0.10) running on Debian Jessie and Raspbian
-- Firefox 37 or newer with Web Components enabled
+- Node.js (>0.12) running on Debian Jessie and Raspbian
+- Recent version of Firefox or Chrome browser
 
 ## Usage
 
 For the Media player application to work, you need the following prerequisites:
-- Node.js > 0.10, npm, git
-- bower<br>
-  `sudo npm install -g bower`
+- Node.js > 0.12, npm, git
 - PulseAudio configured with the D-Bus control interface<br>
   `pactl load-module module-dbus-protocol`
 - VLC 2.2 or newer<br>
   `sudo apt-get install vlc`
 
+
 To install the example application, do the following:
 
+    sudo apt-get install libdbus-1-dev pkg-config
     git clone https://github.com/OpenSmartEnvironment/ose-example-player
     cd ose-example-player
     npm install
 
-To configure this example, edit `./bin/run.js`. For example, below
-you can set the path to your media directory:
 
-    // Access to local filesystem
-    exports.mediaFs = {
-      id: 'ose/lib/shard',
-      sid: 4,                    // Shard id unique within the space
-      scope: 'fs',               // Scope the shard belongs to
-      alias: 'mediaFs',          // Shard alias
-      db: {                      // Database containing shards data
-        id: 'ose-fs/lib/db',     // Database class
-        // Set directory containing media files:
-        root: Path.dirname(Path.dirname(module.filename)) + '/media',
-      }
-    };
+To configure this example, edit `ose-example-player/bin/run.js`. Find and replace "CHANGE_ME" text with appropriate values.
 
 To start the Media player example application, execute the startup script from an X.Org session.
 
-    ./bin/run.js
+    ./ose-example-player/bin/run.js
 
-To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in Firefox
-**37 or newer** (Iceweasel in Debian Jessie is too old).<br>
-**Before opening the link, enable the `dom.webcomponents.enabled` option in `about:config`.**
+
+To access the [HTML5 frontend](http://opensmartenvironment.github.io/doc/#html5frontend), open the following URL in [supported browser](http://opensmartenvironment.github.io/doc/#supportedbrowser)
 
     http://localhost:4431
 
