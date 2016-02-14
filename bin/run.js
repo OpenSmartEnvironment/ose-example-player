@@ -15,8 +15,6 @@
  *   - local files
  *   - items in history
  *   - Icecast directory
- * - Near-realtime synchronization among all front- and backend
- *   instances
  * - Volume control using [PulseAudio]
  * - Remote control of keyboard and pointer through xdotool ([xorg])
  * - Integration with other example applications:
@@ -31,7 +29,6 @@
  * For the Media player application to work, you need the following prerequisites:
  * - Node.js > 0.12, npm, git
  * - PulseAudio configured with the D-Bus control interface<br>
- *   `sudo apt-get install libdbus-1-dev pkg-config`
  *   `pactl load-module module-dbus-protocol`
  * - VLC 2.2 or newer<br>
  *   `sudo apt-get install vlc`
@@ -39,12 +36,13 @@
  *
  * To install the example application, do the following:
  *
+ *     sudo apt-get install libdbus-1-dev pkg-config
  *     git clone https://github.com/OpenSmartEnvironment/ose-example-player
  *     cd ose-example-player
  *     npm install
  *
  *
- * To configure this example, edit `ose-example-player/bin/run.js`.
+ * To configure this example, edit `ose-example-player/bin/run.js`. Find and replace "CHANGE_ME" text with appropriate values.
  *
  * To start the Media player example application, execute the startup script from an X.Org session.
  *
@@ -107,13 +105,13 @@ exports.ose = {
   */
 };
 
-// Enable general control package
+// Enable control package
 exports['ose-control'] = {};
 
-// Enable general dvb package
+// Enable dvb package
 exports['ose-dvb'] = {};
 
-// Enable general media player package
+// Enable media player package
 exports['ose-media'] = {};
 
 // Enable PulseAudio control package
@@ -175,7 +173,6 @@ exports.http = {
 
 // Enable HTML5 frontend
 exports['ose-html5'] = {
-
   // Define dashboard content
   dashboard: [
     {
@@ -201,6 +198,20 @@ exports['ose-html5'] = {
         entry: 'rpi',
         shard: 'rpi',
       }
+    }, {
+      caption: 'Camera',
+      view: 'detail',
+      ident: {
+        entry: 'camera1',
+        shard: 'rpi',
+      }
+    }, {
+      caption: 'Images',
+      view: 'list',
+      ident: {
+        query: 'all',
+        shard: 'rpiImages',
+      }
     },
   ],
 };
@@ -208,44 +219,54 @@ exports['ose-html5'] = {
 // Definition of data structure. – The space named "example.org"
 // contains all your data
 exports.space = {
-  id: 'ose/lib/space',        // Module id
-  name: 'example.org',        // Name of the space
-  home: 'player',             // Home instance of the space – This
-                              // instance is the home instance of the
-                              // space.
+  // Module id
+  id: 'ose/lib/space',
+  // Name of the space
+  name: 'example.org',
+  // Home instance of the space – This
+  // instance is the home instance of the
+  // space.
+  home: 'player',
 };
 
 // The space is partitioned into shards:
 exports.playerControl = {
   id: 'ose/lib/shard',
-  sid: 2,                 // Shard id unique within the space
-  schema: 'control',      // Schema the shard belongs to
-  alias: 'playerControl',  // Shard alias
+  // Shard id unique within the space
+  sid: 2,
+  // Schema the shard belongs to
+  schema: 'control',
+  // Shard alias
+  alias: 'playerControl',
+  // Fill new empty shard with some data
   upgrades: [
-    initControl,  // Method initializing entries belonging to the shard, defined below
+    // Method initializing entries belonging to the shard, defined below
+    initControl,
   ],
 };
 
 // Media shard
 exports.media = {
   id: 'ose/lib/shard',
-  sid: 3,               // Shard id unique within the space
-  schema: 'media',      // Schema the shard belongs to
-  alias: 'media',       // Shard alias
-  leveldb: 'memdown',   // Type of level down
+  sid: 3,
+  schema: 'media',
+  alias: 'media',
+  leveldb: 'memdown',
   upgrades: [
-    initMedia,  // Method initializing entries belonging to the shard, defined below
+    initMedia,
   ],
 };
 
 // Access to local filesystem
 exports.mediaFs = {
   id: 'ose/lib/shard',
-  sid: 4,                    // Shard id unique within the space
-  schema: 'fs',              // Schema the shard belongs to
-  alias: 'mediaFs',          // Shard alias
-    // Set directory containing media files:
+  sid: 4,
+  schema: 'fs',
+  alias: 'mediaFs',
+
+  // Change to directory containing media files:
 //  root: Path.dirname(Path.dirname(module.filename)) + '/media',
+//  root: 'CHANGE_ME',
   root: '/opt/media',
 };
 
@@ -269,11 +290,15 @@ function initControl(transaction, cb) {
   transaction.add('vlc', {
     alias: 'playback',
     name: 'VLC',
-//    mcast: 'mcastPool',  // Pool used for multicast streaming
+
+    // Pool used for multicast streaming, enable this to allow multicast streaming
+//    mcast: 'mcastPool',
 
     // IP used as input for unicast streams
     ucast: {
-      ip: '10.166.25.14',
+      // Change to ip address of this host that will receive unicast media streams, required for DVB streamer to work
+//      ip: 'CHANGE_ME'
+      ip: '10.166.26.2',
       port: '5000',
     },
   });
@@ -294,8 +319,8 @@ function initControl(transaction, cb) {
 
   // Create entry representing generic Media player
   transaction.add('player', {
-    alias: 'player',       // Entry alias
-    name: 'Media Player',  // Displayed name
+    alias: 'player',
+    name: 'Media Player',
 
     // Identification of playback entry
     playback: {
@@ -309,13 +334,13 @@ function initControl(transaction, cb) {
       shard: 'playerControl',
     },
 
-    // Identification of DVB streamer entry
+    // Identification of DVB streamer entry, ose-example-dvb must be running for DVB streaming to work
     dvb: {
       entry: 'dvbstreamer',
       shard: 'dvb',
     },
 
-    // List of sources, each source is identification for "list" view or full view "so"
+    // List of media sources
     sources: {
       history: {
         ident: {
