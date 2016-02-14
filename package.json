@@ -1,6 +1,6 @@
 {
   "name": "ose-example-player",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "author": "Jan Snasel <snaselj@gmail.com>",
   "description": "Open Smart Environment media player example",
   "contributors": [
